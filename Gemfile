@@ -24,6 +24,7 @@ gem 'twitter-bootstrap-rails'
 gem 'devise-bootstrap-views'
 gem 'jquery-rails'
 gem 'rails-ujs'
+gem 'mailgun_rails'
 
 
 # Use Active Storage variant
