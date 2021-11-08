@@ -122,4 +122,7 @@ Rails.application.configure do
     api_key: ENV['MAILGUN_API_KEY'],
     domain: ENV['MAILGUN_DOMAIN']
   }
+
 end
+
+Rails.application.routes.default_url_options[:host] = 'photo-app-32.herokuapp.com'
