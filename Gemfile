@@ -25,7 +25,8 @@ gem 'devise-bootstrap-views'
 gem 'jquery-rails'
 gem 'rails-ujs'
 gem 'mailgun_rails'
-
+gem 'stripe'
+gem 'figaro'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
