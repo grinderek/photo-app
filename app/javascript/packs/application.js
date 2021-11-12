@@ -12,5 +12,3 @@ import "../custom/credit_card_form"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
-
-import 'bootstrap'
