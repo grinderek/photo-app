@@ -27,7 +27,9 @@ gem 'rails-ujs'
 gem 'mailgun_rails'
 gem 'figaro'
 gem 'stripe'
-
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
