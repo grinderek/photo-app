@@ -8,6 +8,8 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
+require("custom/credit_card_form")
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
