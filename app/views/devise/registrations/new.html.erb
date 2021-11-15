@@ -2,7 +2,7 @@
 <h1><%= t('.sign_up') %></h1>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name),
-             html: { role: "form", class: "cc_form" }) do |f| %>
+             html: { role: "form", class: "cc_form" }, id: 'order-details') do |f| %>
   <%= bootstrap_devise_error_messages! %>
 
   <div class="form-group">
@@ -31,15 +31,15 @@
   </div>
 
   <div class="form-group">
-    <%= f.submit t('.sign_up'), class: 'btn btn-primary' %>
+    <%= f.submit t('.sign_up'), class: 'btn btn-primary', id: 'submit-stripe' %>
   </div>
 <% end %>
 
 <script type="text/javascript">
-    var stripe = Stripe("<%= Rails.application.credentials.stripe[:publishable_key] %>");
-    var elements = stripe.elements();
+    let stripe = Stripe("<%= ENV['stripe_publishable_key'] %>");
+    let elements = stripe.elements();
 
-    var card = elements.create('card', {
+    let card = elements.create('card', {
         'style': {
             'base': {
                 'fontFamily': 'Arial, sans-serif',
@@ -53,6 +53,28 @@
     });
 
     card.mount("#<%= :card %>");
+
+    /*let form = document.getElementById('order-details');
+    $(document).on('submit', form, function(event) {
+        $('#submit-stripe').prop('disabled', true);
+        event.preventDefault();
+        stripe.createToken(card).then(function(result) {
+            if (result.error) {
+                // Inform that there was an error.
+                var errorElement = document.getElementById('card-errors');
+                errorElement.textContent = result.error.message;
+            } else {
+                // Now we submit the form. We also add a hidden input storing
+                // the token. So our back-end can consume it.
+                var $form = $(".cc_form");
+                // Add a hidden input orders[token]
+                $form.append($('<input type="hidden" name="orders[token]"/>').val(result.token.id));
+                // Set order type
+                $form.submit();
+            }
+        });
+        return false;
+    });*/
 </script>
 
 <%= render 'devise/shared/links' %>
