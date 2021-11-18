@@ -23,19 +23,38 @@
     <%= f.password_field :password_confirmation, autocomplete: 'current-password', class: 'form-control' %>
   </div>
 
-  <div class="row">
+  <%= form_tag charges_path do %>
+    <article>
+      <% if flash[:error].present? %>
+        <div id="error_explanation">
+          <p><%= flash[:error] %></p>
+        </div>
+      <% end %>
+      <label class="amount">
+        <span>Amount: $10.00</span>
+      </label>
+    </article>
+
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+            data-description="Monthly subscription"
+            data-amount="1000"
+            data-locale="auto"></script>
+  <% end %>
+
+  <!--<div class="row">
     <div class="form-group col-md-6">
-      <div id="<%= :card %>"></div>
+      <div id="<%#= :card %>"></div>
       <div id="card-errors"></div>
     </div>
-  </div>
+  </div>-->
 
-  <div class="form-group">
-    <%= f.submit t('.sign_up'), class: 'btn btn-primary', id: 'submit-stripe' %>
-  </div>
+<!--  <div class="form-group">
+    <%#= f.submit t('.sign_up'), class: 'btn btn-primary', id: 'submit-stripe' %>
+  </div>-->
 <% end %>
 
-<script type="text/javascript">
+<!--<script type="text/javascript">
     let stripe = Stripe("<%= ENV['stripe_publishable_key'] %>");
     let elements = stripe.elements();
 
@@ -75,6 +94,6 @@
         });
         return false;
     });*/
-</script>
+</script>-->
 
 <%= render 'devise/shared/links' %>
